@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
     //       "https://m.media-amazon.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_SX300.jpg"
     // }
   ];
+  var searchMovie = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              Expanded(child: TextField(decoration: InputDecoration(hintText: "Enter movie title"),), flex: 2,),
+              Expanded(child: TextField(controller: searchMovie, decoration: InputDecoration(hintText: "Enter movie title"),), flex: 2,),
               Expanded(child: ElevatedButton(onPressed: (){
                 fetchMovies().then((value) => {
                   setState((){
@@ -90,7 +91,7 @@ class _HomePageState extends State<HomePage> {
   //jika saya berkerja dengan [], jenis data adalah List<Class Name>
   Future<List<MovieSearch>> fetchMovies() async {
     final response = await http
-        .get(Uri.parse('https://www.omdbapi.com/?s=Harry&apikey=87d10179'));
+        .get(Uri.parse('https://www.omdbapi.com/?s='+ searchMovie.text +'&apikey=87d10179'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
