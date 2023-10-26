@@ -12,7 +12,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Movie Details Page"),),
-      body: Text("Details"),
+      body: Text("Detais"),
     );
   }
 }
